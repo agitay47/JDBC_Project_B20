@@ -48,8 +48,14 @@ public class Review {
         //we can do below
         rs.afterLast();
         while(rs.previous()){
-            System.out.println(" Min SALARY COLUMN AS NUMBER $:"+rs.getDouble("MIN_SALARY"));
+            System.out.println(" Min SALARY COLUMN AS NUMBER $"+rs.getDouble("MIN_SALARY"));
         }
+
+        //clean up the connection, statement and resultset object after usage
+        rs.close();
+        stmt.close();
+        conn.close();
+
 
 
 
