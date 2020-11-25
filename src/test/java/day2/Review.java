@@ -19,6 +19,37 @@ public class Review {
         System.out.println("First column value in jobs: "+rs.getString(1));
         System.out.println("First column value in jobs: "+rs.getString(2));
 
+        //move to row number 7 and get above 2 value
+
+        rs.absolute(7);
+        System.out.println("First column value in jobs in row 7: "+rs.getString(1));
+        System.out.println("First column value in jobs in row 7: "+rs.getString(2));
+
+        rs.last();
+        System.out.println("First column value in jobs in last row: "+rs.getString(1));
+        System.out.println("First column value in jobs in last row: "+rs.getString(2));
+
+        rs.previous();
+        System.out.println("First column value in jobs in 2nd from last row: "+rs.getString(1));
+        System.out.println("First column value in jobs in 2nd from last row: "+rs.getString(2));
+
+        System.out.println("=============LOOP FROM TOP TO BUTTON PRINT JOB_ID===========");
+
+        rs.beforeFirst();
+
+        while(rs.next()){
+            System.out.println("Loop First Column "+rs.getString("JOB_ID"));
+        }
+
+        System.out.println("=LOOP FROM LAST ROW TILL FIRST ROW GET MIN_SLARY COLUMNS AS NUMBER TO =");
+
+        //We are currently at after last location
+        //if you really want to make sure and explicitly say so
+        //we can do below
+        rs.afterLast();
+        while(rs.previous()){
+            System.out.println(" Min SALARY COLUMN AS NUMBER $:"+rs.getDouble("MIN_SALARY"));
+        }
 
 
 
