@@ -1,17 +1,14 @@
 package day2;
 
+import utility.DB_Utility;
+
 import java.sql.*;
 
 public class DisplayingAllDataFromAllColumns {
     public static void main(String[] args) throws SQLException {
 
-        String connectionStr = "jdbc:oracle:thin:@3.88.133.239:1521:XE";
-        String username = "hr" ;
-        String password = "hr" ;
-
-        Connection conn = DriverManager.getConnection(connectionStr,username,password) ;
-        Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        ResultSet rs   =   stmnt.executeQuery("SELECT * FROM EMPLOYEES") ;
+        DB_Utility.createConnection();
+        ResultSet rs   =  DB_Utility.runQuery("SELECT * FROM EMPLOYEES") ;
 
         // print out entire first row of Employee table from above query
         ResultSetMetaData rsmd = rs.getMetaData();
@@ -22,10 +19,10 @@ public class DisplayingAllDataFromAllColumns {
         for (int colNum = 1; colNum <= columnCount; colNum++) {
             System.out.print( rsmd.getColumnLabel(colNum) + "\t"  );
         }
-        System.out.println("----------------------------");
+        System.out.println("\n----------------------------");
         rs.next() ;
 
-        // this whole loop is getting one row of data
+//        // this whole loop is getting one row of data
 //        for (int colNum = 1; colNum <= columnCount; colNum++) {
 //            System.out.print(rs.getString( colNum ) + "\t" );
 //        }
@@ -42,10 +39,7 @@ public class DisplayingAllDataFromAllColumns {
             System.out.println();
         }
 
-
-
-
-
+        DB_Utility.destroy();
 
 
     }
